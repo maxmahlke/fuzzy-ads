@@ -5,8 +5,7 @@ An unofficial command line interface for the SAO/NASA Astrophysics Data System.
 # Prerequisites
 
 1. The command-line fuzzy-finder [fzf](https://github.com/junegunn/fzf)
-2.
-3. An account at the [astrophysics data system](https://ui.adsabs.harvard.edu/) and an API token, saved as per the [ads python package's instructions](https://ads.readthedocs.io/en/latest/#getting-started) either in `~/.ads/dev_key` or in the `ADS_DEV_KEY` shell environment variable
+2. An account at the [astrophysics data system](https://ui.adsabs.harvard.edu/) and an API token, saved as per the [ads python package's instructions](https://ads.readthedocs.io/en/latest/#getting-started) either in `~/.ads/dev_key` or in the `ADS_DEV_KEY` shell environment variable
 
 # Install
 

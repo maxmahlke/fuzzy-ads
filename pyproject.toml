@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ads-cli"
+name = "fuzzy-ads"
 version = "0.1.0"
 description = "Unofficial Command Line Interface the SAO/NASA Astrophysics Data System"
 authors = ["Max Mahlke <max.mahlke@oca.eu>"]
@@ -22,4 +22,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-ads = "ads_cli.cli:cli"
+ads = "fuzzy_ads.cli:cli"

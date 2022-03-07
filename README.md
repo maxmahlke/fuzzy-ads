@@ -3,7 +3,7 @@ An unofficial command line interface for the SAO/NASA Astrophysics Data System.
 Query ADS as in the webbrowser, fuzzy-search through the results, and download
 the PDF or export the bibtex entry.
 
-![](https://github.com/maxmahlke/ads-cli/tree/main/gfx/fuzzy_ads_preview.gif)
+<img src="https://github.com/maxmahlke/ads-cli/tree/main/gfx/fuzzy_ads_preview.gif" width="480" height="270"/>
 
 Note that entries without open-access PDFs available are dimmed.
 

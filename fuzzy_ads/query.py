@@ -77,7 +77,7 @@ def present_choice(article):
 
     # Boilerplate
     rich.print(
-        "\n".join(["", "and ".join(article.author), f"[i]{article.title[0]}[/i]", ""])
+        "\n".join(["", " and ".join(article.author), f"[i]{article.title[0]}[/i]", ""])
     )
 
     options = "  ".join(

@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "ads-cli"
+version = "0.1.0"
+description = "Unofficial Command Line Interface the SAO/NASA Astrophysics Data System"
+authors = ["Max Mahlke <max.mahlke@oca.eu>"]
+homepage = "https://github.com/maxmahlke/ads-cli"
+documentation = "https://github.com/maxmahlke/ads-cli"
+repository = "https://github.com/maxmahlke/ads-cli.git"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.27.1"
+rich = "^11.2.0"
+ads = "^0.12.3"
+click = "^8.0.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ads = "ads_cli.cli:cli"

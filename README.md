@@ -1,6 +1,6 @@
 An unofficial command line interface for the SAO/NASA Astrophysics Data System.
 
-[demo gif]
+![ads-cli demo](https://github.com/maxmahlke/ads-cli/tree/main/gfx/fuzzy_ads_preview.gif)
 
 # Prerequisites
 

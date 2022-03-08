@@ -50,7 +50,9 @@ def cli(*args, **kwargs):
     query_params = {kw: value for kw, value in kwargs.items() if value is not None}
 
     # Send query
-    papers = ads.SearchQuery(**query_params, fl=query.QUERY_FIELDS, sort="year")
+    papers = ads.SearchQuery(
+        **query_params, fl=query.QUERY_FIELDS, sort="year", rows=1000
+    )
 
     # Explicitly call execute to catch errors before launching subprocess
     papers.execute()

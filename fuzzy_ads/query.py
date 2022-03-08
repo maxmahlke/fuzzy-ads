@@ -118,7 +118,7 @@ def present_choice(article):
 
     # Retrieve article
     URL = f"https://ui.adsabs.harvard.edu/link_gateway/{article.bibcode}/{source}"
-    FILENAME = f"/tmp/{article.bibcode}.pdf"
+    FILENAME = f"/tmp/{article.bibcode.replace('&', '').replace(' ', '')}.pdf"
 
     if "HTML" in source:
         webbrowser.open(URL)
@@ -127,7 +127,7 @@ def present_choice(article):
     if not os.path.isfile(FILENAME):
         rich.print(f"\nRetrieving article from {source}..")
         download_article(URL, FILENAME)
-        rich.print(f"\nSaved article to {FILENAME}..")
+        rich.print(f"\nSaved article to {FILENAME}")
     webbrowser.open(FILENAME)
 
 

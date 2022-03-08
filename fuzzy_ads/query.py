@@ -127,7 +127,7 @@ def present_choice(article):
     URL = f"https://ui.adsabs.harvard.edu/link_gateway/{article.bibcode}/{source}"
 
     FILE_BIBCODE = article.bibcode.replace("&", "").replace(" ", "")
-    FILE_SOURCE = source.split("_")
+    FILE_SOURCE = source.split("_")[0]
     FILENAME = f"/tmp/{FILE_BIBCODE}_{FILE_SOURCE}.pdf"
 
     if "HTML" in source:

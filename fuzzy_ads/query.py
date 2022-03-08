@@ -77,7 +77,15 @@ def present_choice(article):
 
     # Boilerplate
     rich.print(
-        "\n".join(["", " and ".join(article.author), f"[i]{article.title[0]}[/i]", ""])
+        "\n\n".join(
+            [
+                "",
+                " and ".join(article.author),
+                f"[i]{article.title[0]}[/i]",
+                f"doi:{article.doi[0]}",
+                "",
+            ]
+        )
     )
 
     options = "  ".join(
@@ -119,6 +127,7 @@ def present_choice(article):
     if not os.path.isfile(FILENAME):
         rich.print(f"\nRetrieving article from {source}..")
         download_article(URL, FILENAME)
+        rich.print(f"\nSaved article to {FILENAME}..")
     webbrowser.open(FILENAME)
 
 
@@ -157,7 +166,7 @@ def download_article(URL, FILENAME):
 # Options passed to fzf executable
 FZF_OPTIONS = [
     "--ansi",
-    r"--preview=/usr/bin/echo $(echo {} | cut -d':' -f3)",
+    rf"--preview={shutil.which('echo')} $(echo {{}} | cut -d':' -f3)",
     "--no-hscroll",
     "--preview-window",
     "up,1",
@@ -169,7 +178,7 @@ COLOUR_NO_OPENACCESS = "\033[2m"
 COLOUR_RESET = "\033[0m"
 
 # Article fields to query from ADS
-QUERY_FIELDS = ["author", "bibcode", "year", "title", "property", "esources"]
+QUERY_FIELDS = ["author", "bibcode", "year", "title", "property", "esources", "doi"]
 
 # A subjective selection of search fields from
 # https://ui.adsabs.harvard.edu/help/search/search-syntax
@@ -218,7 +227,7 @@ QUERY_KWS = {
         "short": "",
         "help": "limit search to article with specific attributes",
     },
-    "query": {"short": "q", "help": "search using a generic query term"},
+    "q": {"short": "q", "help": "search using a generic query term"},
     "title": {"short": "", "help": "search for word or phrase in title field"},
     "year": {
         "short": "y",

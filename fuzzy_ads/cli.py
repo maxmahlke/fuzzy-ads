@@ -53,13 +53,7 @@ def cli(*args, **kwargs):
     papers = ads.SearchQuery(**query_params, fl=query.QUERY_FIELDS, sort="year")
 
     # Explicitly call execute to catch errors before launching subprocess
-    try:
-        papers.execute()
-    except ads.exceptions.APIResponseError:
-        click.echo(
-            "Missing ADS API token. See https://ads.readthedocs.io/en/latest/#getting-started"
-        )
-        sys.exit()
+    papers.execute()
 
     # Parse results in fzf
     choice = query.fuzzy_search_results(papers)

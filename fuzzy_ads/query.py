@@ -82,11 +82,19 @@ def present_choice(article):
                 "",
                 " and ".join(article.author),
                 f"[i]{article.title[0]}[/i]",
-                f"doi:{article.doi[0]}",
+                f"doi:{article.doi[0] if article.doi is not None else '-'}",
                 "",
             ]
         )
     )
+
+    # Esources-options
+    if article.esources is not None:
+        options_esources = [
+            f"[blue][{i}][/blue] {option}" for i, option in enumerate(article.esources)
+        ]
+    else:
+        options_esources = []
 
     options = "  ".join(
         [f"[blue][{i}][/blue] {option}" for i, option in enumerate(article.esources)]

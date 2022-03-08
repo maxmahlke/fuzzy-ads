@@ -9,7 +9,7 @@ Common query elements are implemented as short-hands such as `-y|--year`,`-fa|--
     $ ads -fa jenkins -y 2020
 
 
-Then fuzzy-search the results based on year, article, and title and open the selected article as PDF:
+Then fuzzy-search the results based on year, author, and title and open the selected article as PDF:
 
 <img src="https://github.com/maxmahlke/ads-cli/blob/main/gfx/fuzzy_ads_preview.gif?raw=true" width="900" height="540"/>
 

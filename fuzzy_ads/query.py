@@ -97,17 +97,16 @@ def present_choice(article):
         options_esources = []
 
     options = "  ".join(
-        [f"[blue][{i}][/blue] {option}" for i, option in enumerate(article.esources)]
+        options_esources
         + [f"\n[green]\[o][/green] Open on ADS"]
         + [f"[green]\[e][/green] Export bibtex"]
         + [f"[green]\[n][/green] Do Nothing"]
     )
 
     decision = prompt.Prompt.ask(
-        "\n".join([options, "Choose article source or action:"]),
-        choices=[f"{i}" for i in range(len(options))] + ["o", "e", "n"],
+        "\n".join([options, "Choose article source or action"]),
+        choices=[f"{i}" for i in range(len(options_esources))] + ["o", "e", "n"],
         show_choices=False,
-        default="0",
     )
 
     try:

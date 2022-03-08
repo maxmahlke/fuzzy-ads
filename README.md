@@ -1,11 +1,16 @@
 An unofficial command line interface for the SAO/NASA Astrophysics Data System.
 
-Query ADS as in the webbrowser, fuzzy-search through the results, and download
-the PDF or export the bibtex entry.
+Make queries from the command line as in the webbrowser:
+
+    $ ads -q "author:^livingston year:2010-2022"
+
+Fuzzy-search the results and open the selected article as PDF:
 
 <img src="https://github.com/maxmahlke/ads-cli/blob/main/gfx/fuzzy_ads_preview.gif?raw=true" width="960" height="540"/>
-          
-Note that entries without open-access PDFs available are dimmed.
+
+Note that entries without open-access PDFs available are dimmed. Common query
+elements are implemented as short-hands such as `-y|--year`,
+`-fa|--first-author`, `-a|--author`. See `ads --help` more information.
 
 # Prerequisites
 
@@ -14,6 +19,6 @@ Note that entries without open-access PDFs available are dimmed.
 
 # Install
 
-Unfortunately, the `ads-cli` name was already reserved on PyPI. Instead, the package is now name
+The package is available on PyPI as `fuzzy-ads`:
 
      $ pip install fuzzy-ads

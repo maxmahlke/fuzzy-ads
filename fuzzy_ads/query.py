@@ -173,7 +173,7 @@ def download_article(URL, FILENAME):
 # Options passed to fzf executable
 FZF_OPTIONS = [
     "--ansi",
-    rf"--preview={shutil.which('echo')} $(echo {{}} | cut -d':' -f3)",
+    rf"--preview={shutil.which('echo')} $(echo {{}} | cut -d':' -f3-)",
     "--no-hscroll",
     "--preview-window",
     "up,1",

@@ -76,6 +76,7 @@ def present_choice(article):
     """
 
     # Boilerplate
+    rich.print("")
     rich.print(
         "\n\n".join(
             [

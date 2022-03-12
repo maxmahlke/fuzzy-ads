@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fuzzy-ads"
-version = "0.1.4"
+version = "0.1.5"
 description = "Unofficial Command Line Interface the SAO/NASA Astrophysics Data System"
 authors = ["Max Mahlke <max.mahlke@oca.eu>"]
 homepage = "https://github.com/maxmahlke/ads-cli"

@@ -1,7 +1,9 @@
+from pathlib import Path
 import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import webbrowser
 
 import ads
@@ -25,15 +27,11 @@ def fuzzy_search_results(papers):
         The bibcode of the selected article.
     """
 
-    # Open fzf subprocess
-    process = subprocess.Popen(
-        [shutil.which("fzf"), *FZF_OPTIONS],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=None,
-    )
+    # Parse the ads response into fzf input
+    lines = []
+    refereed = []
+    nonrefereed = []
 
-    # Populate fzf dialogue
     for paper in papers:
 
         # Articles which are not open access are dimmed
@@ -46,12 +44,38 @@ def fuzzy_search_results(papers):
         HIDDEN_TITLE = ":".join([" " * shutil.get_terminal_size()[0], paper.title[0]])
 
         # Flush article line to fzf choices
-        process.stdin.write(
+        LINE = (
             f"{PREFIX}{FZF_LINE_FORMAT(paper)}{POSTFIX}{HIDDEN_TITLE}".encode(
                 sys.getdefaultencoding()
             )
             + b"\n"
         )
+
+        if "REFEREED" in paper.property:
+            refereed.append(LINE)
+        else:
+            nonrefereed.append(LINE)
+
+        lines.append(LINE)
+
+    # Write tempfiles for quick refereed-switching
+    for path_file, content in zip(
+        [FILE_ALL, FILE_NONREFEREED, FILE_REFEREED], [lines, nonrefereed, refereed]
+    ):
+        with open(path_file, "wb") as file_:
+            for line in content:
+                file_.write(line)
+
+    # Open fzf subprocess
+    process = subprocess.Popen(
+        [shutil.which("fzf"), *FZF_OPTIONS],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=None,
+    )
+
+    for line in lines:
+        process.stdin.write(line)
         process.stdin.flush()
 
     # Run process and wait for user selection
@@ -80,7 +104,6 @@ def present_choice(article):
     rich.print(
         "\n\n".join(
             [
-                "",
                 " and ".join(article.author),
                 f"[i]{article.title[0]}[/i]",
                 f"doi:{article.doi[0] if article.doi is not None else '-'}",
@@ -174,6 +197,12 @@ def download_article(URL, FILENAME):
 # ------
 # Settings
 
+# Tempfiles for fzf input
+FILE_ALL = Path(tempfile.gettempdir()) / "ads_all.input"
+FILE_NONREFEREED = Path(tempfile.gettempdir()) / "ads_nonrefereed.input"
+FILE_REFEREED = Path(tempfile.gettempdir()) / "ads_refereed.input"
+
+
 # Options passed to fzf executable
 FZF_OPTIONS = [
     "--ansi",
@@ -181,8 +210,12 @@ FZF_OPTIONS = [
     "--no-hscroll",
     "--preview-window",
     "up,1",
+    "--bind",
+    f"ctrl-a:reload(cat {FILE_ALL}),ctrl-f:reload(cat {FILE_NONREFEREED}),ctrl-r:reload(cat {FILE_REFEREED})",
+    "--header",
+    "ctrl-a: all entries  | ctrl-f: non-refereed only | ctrl-r: refereed only",
 ]
-FZF_LINE_FORMAT = lambda paper: f"{paper.bibcode}: {'& '.join(paper.author[:3])}"
+FZF_LINE_FORMAT = lambda paper: f"{paper.bibcode}: {' & '.join(paper.author[:3])}"
 
 # Colours for fzf lines
 COLOUR_NO_OPENACCESS = "\033[2m"

@@ -104,8 +104,8 @@ def present_choice(article):
     rich.print(
         "\n\n".join(
             [
-                " and ".join(article.author),
-                f"[i]{article.title[0]}[/i]",
+                " and ".join(article.author) if article.author is not None else "-",
+                f"[i]{article.title[0] if article.title is not None else '-'}[/i]",
                 f"doi:{article.doi[0] if article.doi is not None else '-'}",
                 "",
             ]
@@ -215,7 +215,9 @@ FZF_OPTIONS = [
     "--header",
     "ctrl-a: all entries  | ctrl-f: non-refereed only | ctrl-r: refereed only",
 ]
-FZF_LINE_FORMAT = lambda paper: f"{paper.bibcode}: {' & '.join(paper.author[:3])}"
+FZF_LINE_FORMAT = (
+    lambda paper: f"{paper.bibcode}: {' & '.join(paper.author[:3]) if paper.author is not None else '-'}"
+)
 
 # Colours for fzf lines
 COLOUR_NO_OPENACCESS = "\033[2m"

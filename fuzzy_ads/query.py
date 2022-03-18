@@ -41,7 +41,12 @@ def fuzzy_search_results(papers):
         POSTFIX = COLOUR_RESET if not OPENACCESS else ""
 
         # Append the title out-of-view: it is cut into the preview window
-        HIDDEN_TITLE = ":".join([" " * shutil.get_terminal_size()[0], paper.title[0]])
+        HIDDEN_TITLE = ":".join(
+            [
+                " " * shutil.get_terminal_size()[0],
+                paper.title[0] if paper.title is not None else "-",
+            ]
+        )
 
         # Flush article line to fzf choices
         LINE = (

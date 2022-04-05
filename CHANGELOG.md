@@ -1,3 +1,6 @@
+# 0.1.8 - 2022-04-05
+- Allow redirects when using GET request, increasing the reliability of open-access downloads
+
 # 0.1.7 - 2022-03-21
 - Another bugfix in case title is None
 

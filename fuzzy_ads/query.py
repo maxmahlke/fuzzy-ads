@@ -182,7 +182,7 @@ def download_article(URL, FILENAME):
     """
 
     # Send GET request
-    response = requests.get(URL, stream=True)
+    response = requests.get(URL, stream=True, allow_redirects=True)
 
     # Get total filesize for progressbar
     total = int(response.headers.get("content-length", 0))

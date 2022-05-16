@@ -1,3 +1,6 @@
+# 0.1.9 - 2022-05-16
+- Append 'et al.' in case there are more than three authors for a paper
+
 # 0.1.8 - 2022-04-05
 - Allow redirects when using GET request, increasing the reliability of open-access downloads
 

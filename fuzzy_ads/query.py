@@ -50,7 +50,7 @@ def fuzzy_search_results(papers):
 
         # Flush article line to fzf choices
         LINE = (
-            f"{PREFIX}{FZF_LINE_FORMAT(paper)}{POSTFIX}{HIDDEN_TITLE}".encode(
+            f"{PREFIX}{paper.bibcode}:{_format_authors(paper)}{POSTFIX}{HIDDEN_TITLE}".encode(
                 sys.getdefaultencoding()
             )
             + b"\n"
@@ -201,6 +201,20 @@ def download_article(URL, FILENAME):
 
 # ------
 # Settings
+def _format_authors(paper):
+    """Format the first three authors of a paper, append 'et al.' in case there is more than 3."""
+
+    if paper.author is not None:
+
+        author = " & ".join(paper.author[:3])
+
+        if len(paper.author) > 3:
+            author = author + ", et al."
+    else:
+        author = "-"
+
+    return author
+
 
 # Tempfiles for fzf input
 FILE_ALL = Path(tempfile.gettempdir()) / "ads_all.input"
@@ -220,9 +234,6 @@ FZF_OPTIONS = [
     "--header",
     "ctrl-a: all entries  | ctrl-f: non-refereed only | ctrl-r: refereed only",
 ]
-FZF_LINE_FORMAT = (
-    lambda paper: f"{paper.bibcode}: {' & '.join(paper.author[:3]) if paper.author is not None else '-'}"
-)
 
 # Colours for fzf lines
 COLOUR_NO_OPENACCESS = "\033[2m"

@@ -111,7 +111,7 @@ def present_choice(article):
             [
                 " and ".join(article.author) if article.author is not None else "-",
                 f"[i]{article.title[0] if article.title is not None else '-'}[/i]",
-                f"doi:{article.doi[0] if article.doi is not None else '-'}",
+                f"doi: {article.doi[0] if article.doi is not None else '-'}",
                 "",
             ]
         )
@@ -138,16 +138,23 @@ def present_choice(article):
         show_choices=False,
     )
 
+    FILE_BIBCODE = article.bibcode.replace("&", "").replace(" ", "")
+
     try:
         source = article.esources[int(decision)]
     except ValueError:
         if decision == "e":
-            rich.print("")
-            rich.print(
-                ads.export.ExportQuery(
-                    bibcodes=article.bibcode, format="bibtex"
-                ).execute()
-            )
+
+            FILENAME = f"/tmp/{FILE_BIBCODE}.tex"
+
+            with open(FILENAME, "w") as file_:
+                file_.write(
+                    ads.export.ExportQuery(
+                        bibcodes=article.bibcode, format="bibtex"
+                    ).execute()
+                )
+            rich.print(f"\nBibtex entry saved to {FILENAME}")
+
         elif decision == "o":  # open page on ADS
             webbrowser.open(f"https://ui.adsabs.harvard.edu/abs/{article.bibcode}")
         sys.exit()
@@ -155,7 +162,6 @@ def present_choice(article):
     # Retrieve article
     URL = f"https://ui.adsabs.harvard.edu/link_gateway/{article.bibcode}/{source}"
 
-    FILE_BIBCODE = article.bibcode.replace("&", "").replace(" ", "")
     FILE_SOURCE = source.split("_")[0]
     FILENAME = f"/tmp/{FILE_BIBCODE}_{FILE_SOURCE}.pdf"
 

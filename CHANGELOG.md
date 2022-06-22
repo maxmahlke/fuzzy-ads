@@ -1,3 +1,6 @@
+# 0.1.10 - 2022-06-22
+- Bibtex entry is saved to file instead of printed to console
+
 # 0.1.9 - 2022-05-16
 - Append 'et al.' in case there are more than three authors for a paper
 

@@ -1,3 +1,6 @@
+# 0.1.11 - 2023-05-06
+- Make python dependencies less strict
+
 # 0.1.10 - 2022-06-22
 - Bibtex entry is saved to file instead of printed to console
 

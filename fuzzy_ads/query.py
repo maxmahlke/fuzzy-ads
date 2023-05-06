@@ -5,7 +5,6 @@ import subprocess
 import sys
 import tempfile
 import webbrowser
-
 import ads
 import requests
 import rich

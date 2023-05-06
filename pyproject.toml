@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fuzzy-ads"
-version = "0.1.10"
+version = "0.1.11"
 description = "Unofficial Command Line Interface the SAO/NASA Astrophysics Data System"
 authors = ["Max Mahlke <max.mahlke@oca.eu>"]
 homepage = "https://github.com/maxmahlke/fuzzy-ads"
@@ -8,14 +8,14 @@ documentation = "https://github.com/maxmahlke/fuzzy-ads"
 repository = "https://github.com/maxmahlke/fuzzy-ads.git"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-requests = "^2.27.1"
-rich = "^11.2.0"
-ads = "^0.12.3"
-click = "^8.0.4"
+python = ">=3.7"
+requests = ">=2.27.1"
+rich = ">=11.2.0"
+ads = ">=0.12.3"
+click = ">=8.0.4"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = ">=5.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

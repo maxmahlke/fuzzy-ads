@@ -34,7 +34,11 @@ def fuzzy_search_results(papers):
     for paper in papers:
 
         # Articles which are not open access are dimmed
-        OPENACCESS = "OPENACCESS" in paper.property
+        OPENACCESS = (
+            True
+            if paper.property is not None and "OPENACCESS" in paper.property
+            else False
+        )
 
         PREFIX = COLOUR_NO_OPENACCESS if not OPENACCESS else ""
         POSTFIX = COLOUR_RESET if not OPENACCESS else ""
@@ -55,7 +59,7 @@ def fuzzy_search_results(papers):
             + b"\n"
         )
 
-        if "REFEREED" in paper.property:
+        if paper.property is not None and "REFEREED" in paper.property:
             refereed.append(LINE)
         else:
             nonrefereed.append(LINE)

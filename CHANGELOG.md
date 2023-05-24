@@ -1,3 +1,6 @@
+# 0.1.12 - 2023-05-24
+- Check if paper properties are None
+
 # 0.1.11 - 2023-05-06
 - Make python dependencies less strict
 

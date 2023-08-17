@@ -1,3 +1,6 @@
+# 0.1.13 - 2023-08-17
+- Add -h/-v parameters for help and version
+
 # 0.1.12 - 2023-05-24
 - Check if paper properties are None
 

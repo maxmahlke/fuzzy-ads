@@ -35,7 +35,8 @@ query_options = [
 ]
 
 
-@click.command()
+@click.command(context_settings=dict(help_option_names=["-h", "--help"]))
+@click.version_option(ads.__version__, "-v", "--version", message="%(version)s")
 @add_options(query_options)
 def cli(*args, **kwargs):
     """Unofficial Command Line Interface the SAO/NASA Astrophysics Data System"""

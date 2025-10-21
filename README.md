@@ -2,7 +2,8 @@
 
 # fuzzy-ads
 
-An unofficial command line interface for the SAO/NASA Astrophysics Data System.
+An unofficial command line interface for the SAO/NASA [astrophysics data system](https://ui.adsabs.harvard.edu/) and the [SciX](https://scixplorer.org/) platform.
+
 
 <img src="https://github.com/maxmahlke/ads-cli/blob/main/gfx/fuzzy_ads_preview.gif?raw=true" width="900" height="540"/>
 
